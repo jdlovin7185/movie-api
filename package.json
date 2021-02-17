@@ -20,5 +20,8 @@
   "homepage": "https://github.com/jdlovin7185/movie-api#readme",
   "dependencies": {
     "lodash": "^4.17.20"
+  },
+  "devDependencies": {
+    "eslint": "^7.20.0"
   }
 }
