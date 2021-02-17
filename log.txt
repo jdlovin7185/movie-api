@@ -1,18 +1,37 @@
-URL: /
-Timestamp: Tue Feb 16 2021 13:56:23 GMT-0500 (Eastern Standard Time)
 
-URL: /
-Timestamp: Tue Feb 16 2021 13:56:42 GMT-0500 (Eastern Standard Time)
+const http = require('http'),
+  fs = require('fs'),
+  url = require('url');
 
-URL: /documentation
-Timestamp: Tue Feb 16 2021 13:56:43 GMT-0500 (Eastern Standard Time)
+http.createServer((request, response) => {
+  let addr = request.url,
+    q = url.parse(addr, true),
+    filePath = '';
 
-URL: /
-Timestamp: Tue Feb 16 2021 13:56:58 GMT-0500 (Eastern Standard Time)
+  fs.appendFile('log.txt', 'URL: ' + addr + '\nTimestamp: ' + new Date() + '\n\n', (err) => {
+    if (err) {
+        console.log(err);
+      } else {
+        console.log('Added to log.');
+      }
+  });
 
-URL: /gvgvg
-Timestamp: Tue Feb 16 2021 13:57:00 GMT-0500 (Eastern Standard Time)
+  if (q.pathname.includes('documentation')) {
+    filePath = (__dirname + '/documentation.html');
+  } else {
+    filePath = 'index.html';
+  }
 
-URL: /favicon.ico
-Timestamp: Tue Feb 16 2021 13:57:00 GMT-0500 (Eastern Standard Time)
+  fs.readFile(filePath, (err, data) => {
+    if (err) {
+        throw err;
+      }
 
+    response.writeHead(200, { 'Content-Type': 'text/html' });
+    response.write(data);
+    response.end();
+
+  });
+
+}).listen(8080);
+console.log('My test server is running on Port 8080.');
