@@ -1,6 +1,14 @@
-const express = require("express"),
+const express = require("express");
+  morgan = require("morgan");
 
 const app = express();
+
+app.use(morgan('common'));
+
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send('What did you break this time?');
+});
 
 let topMovies = [
   {
@@ -50,7 +58,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/documentation', (req, res) => {
-  res.sendFile('public/documentation.html', { root: _dirname });
+  res.sendFile('public/documentation.html',{root: __dirname});
 });
 
 app.get('/movies', (req, res) => {
