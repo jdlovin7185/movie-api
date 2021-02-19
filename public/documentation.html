@@ -1,8 +1,58 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-us">
   <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie API</title>
   </head>
   <body>
-    <h1>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</h1>
+    <h4>Objective</h4>
+    <p>
+      To build the server-side component of a “movies” web application. The web application will provide users with access to information about different movies, directors, and genres. Users will be able to sign up, update their personal information, and create a list of their favorite movies.
+    </p>
+    <h4>Technical Requirements</h4>
+    <table>
+      <tr>
+        <th>Request</th>
+        <th>URL</th>
+        <th>HTTP Method</th>
+        <th>Request body data format</th>
+        <th>Response body data format</th>
+      </tr>
+      <tr>
+        <td>Return a list of ALL movies to the user</td>
+        <td>/movies/all</td>
+        <td>GET</td>
+        <td>None</td>
+        <td>A JSON object holding data about ALL movies available to the user</td>
+      </tr>
+      <tr>
+        <td>Return data (description, genre, director, and image URL) about a single movie by title to the user</td>
+        <td>/movies</td>
+        <td>GET</td>
+        <td>none</td>
+        <td>a JSON object hold data about a single title as such: {title: "I am Legend", description: "I Am Legend is a 2007 American post-apocalyptic action thriller film loosely based on the 1954 novel of the same name by Richard Matheson.", genre: "Sci-fi/Horror", director: "Francis Lawrence", https://irs.www.warnerbros.com/keyart-jpeg/movies/media/browser/i_am_legend_key_art.jpg"}</td>
+      </tr>
+      <tr>
+        <td>Return data about a genre (description) by name/title (e.g., "Thriller")</td>
+        <td>/movies/[title]/[genre]</td>
+        <td>GET</td>
+        <td>None</td>
+        <td>a JSON object holding data about a single movies genre as such: {title: "Prometheus", genre: "Sci-fi/Horror"},</td>
+      </tr>
+      <tr>
+        <td>Return data about a director (bio, birth year, death year) by name</td>
+        <td>/movies/[director]</td>
+        <td>GET</td>
+        <td>None</td>
+        <td>a JSON about holding data about a single director as such: {director: [];}</td>
+      </tr>
+      <tr>
+        <td>Allow new users to register</td>
+        <td>/user/[registration]</td>
+        <td>POST</td>
+        <td></td>
+      </tr>
+    </table>
   </body>
 </html>
