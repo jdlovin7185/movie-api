@@ -65,6 +65,49 @@ app.get('/movies', (req, res) => {
   res.json(topMovies);
 });
 
+app.get('/movies/all',(req, res) => {
+  res.send('These are all the movies man');
+});
+
+app.get('/movies/title/genre',(req, res) => {
+  res.send('You got some movies kid');
+});
+
+app.get('/movies/director', (req, res) => {
+  res.send('Welcome to a Ridley Scott film');
+});
+
+app.post('/user/registration', (req, res) => {
+  let newUser = req.body;
+
+  if (!newUser.name) {
+    const message = 'Missing "name" in request body';
+    res.status(400).send(message);
+  } else {
+    newUser.id = uuid.v4();
+    user.push(newUser);
+    res.status(201).send(newUser);
+  }
+});
+
+app.post('/users', (req, res) => {
+  res.send('You need to update your profile');
+});
+
+app.put('/users/movies', (req, res) => {
+  res.send('Whats your favorite movie?');
+});
+
+app.delete('/users/title', (req, res) => {
+  res.send('But it was rated 89 on Metacritic. Do not delete!');
+});
+
+app.delete('/users/email', (req, res) => {
+  res.send('Alright we shall see you later then');
+});
+
+
+
 app.listen(8080, () => {
   console.log('Your app is listening on port 8080.');
 });
