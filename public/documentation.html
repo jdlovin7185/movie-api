@@ -52,6 +52,33 @@
         <td>/user/[registration]</td>
         <td>POST</td>
         <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Allow users to update their user info(username)</td>
+        <td>/users/</td>
+        <td>POST</td>
+        <td>a JSON object holding data about the user info to update, structured like: {name: "New Username", email: newusername@email.com}</td>
+        <td>a message saying the user info has been updated successfully.</td>
+      </tr>
+      <tr>
+        <td>Allow users to add a movie to their list of favorites (showing only a text that a movie has been added)</td>
+        <td>/users/[movie]</td>
+        <td>PUT</td>
+        <td>a JSON object holding data about the user info to add, as such: {name: "user", movies: {, title: '', stars: [] }}</td>
+        <td>A message indicating the movie was added</td>
+      </tr>
+        <td>Allow users to remove a movie from their list of favorites(showing only a text that a movie has been removed)</td>
+        <td>/users/[title]</td>
+        <td>DELETE</td>
+        <td>A message indicating the movie was deleted</td>
+      </tr>
+      <tr>
+        <td>Allow existing users to deregister (showing only a text that a user email has been removed)</td>
+        <td>/users/[email]</td>
+        <td>Delete</td>
+        <td>None</td>
+        <td>A message indicating the user was deleted</td>
       </tr>
     </table>
   </body>
