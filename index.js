@@ -77,13 +77,14 @@ app.get('/movies/all',(req, res) => {
   res.send('This GET request was successful');
 });
 
-app.get('/movies/title/genre',(req, res) => {
-  res.send('You got some movies kid');
+app.get('/movies/title/:genre',(req, res) => {
+  res.json(topMovies.find((style) =>
+    {return style.genre === req.params.genre}));
 });
 
 app.get('/movies/:director', (req, res) => {
-  res.json(topMovies.find((director) =>
-    {return topMovies.director === req.params.director}));
+  res.json(topMovies.find((person) =>
+    {return person.director === req.params.director}));
 });
 
 app.post('/user/registration', (req, res) => {
