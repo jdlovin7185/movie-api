@@ -5,10 +5,6 @@ const app = express();
 
 app.use(morgan('common'));
 
-app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).send('What did you break this time?');
-});
 
 let topMovies = [
   {
@@ -110,4 +106,9 @@ app.delete('/users/email', (req, res) => {
 
 app.listen(8080, () => {
   console.log('Your app is listening on port 8080.');
+});
+
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send('What did you break this time?');
 });
