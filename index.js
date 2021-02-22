@@ -9,45 +9,57 @@ app.use(morgan('common'));
 let topMovies = [
   {
     title: 'Inception',
-    director: 'Christopher Nolan'
+    director: 'Christopher Nolan',
+    genre: ['Action','Sci-fi']
   },
   {
     title: 'Interstellar',
-    director: 'Christopher Nolan'
+    director: 'Christopher Nolan',
+    genre: ['Sci-fi','Adventure']
   },
   {
     title: 'Pulp Fiction',
-    director: 'Quentin Tarantino'
+    director: 'Quentin Tarantino',
+    genre: ['Crime','Drama']
   },
   {
     title: 'Once Upon a Time in Hollywood',
-    director: 'Quentin Tarantino'
+    director: 'Quentin Tarantino',
+    genre: 'Comedy'
   },
   {
     title: 'Inglorious Basterds',
-    director: 'Quentin Tarantino'
+    director: 'Quentin Tarantino',
+    genre: ['War','Action']
   },
   {
     title: 'The Lincoln Lawyer',
-    director: 'Brad Furman'
+    director: 'Brad Furman',
+    genre: ['Thriller','Crime']
   },
   {
     title: 'L.A. Confidential',
-    director: 'Curtis Hanson'
+    director: 'Curtis Hanson',
+    genre: ['Crime','Mystery']
   },
   {
     title: 'No Country for Old Men',
-    director: 'Ethan Coen'
+    director: 'Ethan Coen',
+    genre: ['Thriller','Western']
   },
   {
     title: 'Ford v Ferrari',
-    director: 'James Mangold'
+    director: 'James Mangold',
+    genre: ['Sport','Drama']
   },
   {
     title: 'The Departed',
-    director: 'Martin Scorsese'
+    director: 'Martin Scorsese',
+    genre: ['Thriller','Crime']
   }
 ];
+
+
 
 app.get('/', (req, res) => {
   res.send('Welcome to my movie collection!');
@@ -69,8 +81,9 @@ app.get('/movies/title/genre',(req, res) => {
   res.send('You got some movies kid');
 });
 
-app.get('/movies/director', (req, res) => {
-  res.send('This GET request was successful');
+app.get('/movies/:director', (req, res) => {
+  res.json(topMovies.find((director) =>
+    {return topMovies.director === req.params.director}));
 });
 
 app.post('/user/registration', (req, res) => {
