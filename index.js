@@ -62,7 +62,7 @@ app.get('/movies', (req, res) => {
 });
 
 app.get('/movies/all',(req, res) => {
-  res.send('These are all the movies man');
+  res.send('This GET request was successful');
 });
 
 app.get('/movies/title/genre',(req, res) => {
@@ -70,7 +70,7 @@ app.get('/movies/title/genre',(req, res) => {
 });
 
 app.get('/movies/director', (req, res) => {
-  res.send('Welcome to a Ridley Scott film');
+  res.send('This GET request was successful');
 });
 
 app.post('/user/registration', (req, res) => {
