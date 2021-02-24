@@ -106,6 +106,37 @@ let allGenres = [
   }
 ];
 
+let allDirectors = [
+  {
+    dirTarantino: `Quentin Jerome Tarantino is an American film director, screenwriter, producer, and actor. His films are characterized by nonlinear storylines, dark humor, aestheticization of violence, extended scenes of dialogue, ensemble casts, references to popular culture and a wide variety of other films, eclectic soundtracks primarily containing songs and score pieces from the 1960s to the 1980s, alternate history, and features of neo-noir film.`,
+    yearBorn: `March 27, 1963`
+  },
+  {
+    dirNolan: `Christopher Edward Nolan CBE is a British-American film director, producer, and screenwriter. His directorial efforts have grossed more than US$5.1 billion worldwide, garnered 34 Oscar nominations and ten wins. Born and raised in London, Nolan developed an interest in filmmaking from a young age.`,
+    yearBorn: `July 30, 1970`
+  },
+  {
+    dirFurman: `Brad Furman is an American film and music video director, producer, and writer.`
+  },
+  {
+    dirHanson: `Curtis Lee Hanson (March 24, 1945 – September 20, 2016) was an American film director, screenwriter, and producer. His directing work included the psychological thriller The Hand That Rocks the Cradle (1992), the neo-noir crime film L.A. Confidential (1997), the comedy Wonder Boys (2000), the hip-hop biopic 8 Mile (2002), the romantic comedy-drama In Her Shoes (2005), and the made-for-television docudrama Too Big to Fail (2011).`,
+    bornYear: `March 24, 1945`,
+    deathYear: `September 20, 2016`
+  },
+  {
+    dirCoen: `Ethan Coen was born on September 21, 1957 in Minneapolis, Minnesota, USA as Ethan Jesse Coen. He is a producer and writer, known for The Ballad of Buster Scruggs (2018), Inside Llewyn Davis (2013) and A Serious Man (2009). He has been married to Tricia Cooke since October 2, 1990. They have two children.`,
+    bornYear: `September 21, 1957`
+  },
+  {
+    dirMangold: `James Mangold is an American film and television director, screenwriter and producer. He is best known for the films Cop Land, Girl, Interrupted, Walk the Line, The Wolverine and Logan, the last of which earned him a nomination for the Academy Award for Best Adapted Screenplay.`,
+    bornYear: `December 16, 1963`
+  },
+  {
+    dirScorsese: `Martin Charles Scorsese (born November 17, 1942) is an American film director, producer, screenwriter, and actor. One of the major figures of the New Hollywood era, he is widely regarded as one of the most significant and influential directors in film history.`,
+    bornYear: `November 17, 1942`
+  }
+];
+
 
 
 app.get('/', (req, res) => {
