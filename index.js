@@ -119,7 +119,7 @@ let allDirectors = [
     dirFurman: `Brad Furman is an American film and music video director, producer, and writer.`
   },
   {
-    dirHanson: `Curtis Lee Hanson (March 24, 1945 – September 20, 2016) was an American film director, screenwriter, and producer. His directing work included the psychological thriller The Hand That Rocks the Cradle (1992), the neo-noir crime film L.A. Confidential (1997), the comedy Wonder Boys (2000), the hip-hop biopic 8 Mile (2002), the romantic comedy-drama In Her Shoes (2005), and the made-for-television docudrama Too Big to Fail (2011).`,
+    dirHanson: `Curtis Lee Hanson was an American film director, screenwriter, and producer. His directing work included the psychological thriller The Hand That Rocks the Cradle (1992), the neo-noir crime film L.A. Confidential (1997), the comedy Wonder Boys (2000), the hip-hop biopic 8 Mile (2002), the romantic comedy-drama In Her Shoes (2005), and the made-for-television docudrama Too Big to Fail (2011).`,
     bornYear: `March 24, 1945`,
     deathYear: `September 20, 2016`
   },
