@@ -2,7 +2,7 @@ const express = require("express");
   morgan = require("morgan");
 
 const mongoose = require('mongoose');
-const Models = require('./models.js');
+const Models = require('./modal.js');
 
 const Movies = Models.Movie;
 const Users = Models.User;
@@ -57,7 +57,7 @@ let topMovies = [
       Bio: 'Quentin Jerome Tarantino is an American film director, screenwriter, producer, and actor. His films are characterized by nonlinear storylines, dark humor, aestheticization of violence, extended scenes of dialogue, ensemble casts, references to popular culture and a wide variety of other films, eclectic soundtracks primarily containing songs and score pieces from the 1960s to the 1980s, alternate history, and features of neo-noir film.',
       Birth: 'March 27, 1963'
     },
-    imageurl: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Ftime.com%2F3505849%2Fpulp-fiction-20-years%2F&psig=AOvVaw3l1zZWX7QgtAvSo3cS_rMw&ust=1614214351843000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCPjA-bSnge8CFQAAAAAdAAAAABAD'
+    imageurl: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Ftime.com%2F3505849%2Fpulp-fiction-20-years%2F&psig=AOvVaw3l1zZWX7QgtAvSo3cS_rMw&ust=1614214351843000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCPjA-bSnge8CFQAAAAAdAAAAABAD',
     Featured: true
   },
   {
@@ -173,7 +173,14 @@ app.get('/documentation', (req, res) => {
 });
 
 app.get('/movies', (req, res) => {
-  res.json(topMovies);
+  Movies.find()
+  .then((moviedb) => {
+    res.status(201).json(moviedb);
+  })
+  .catch((err) => {
+    console.error(err);
+    res.status(500).send('Error: ' + err);
+  });
 });
 
 app.get('/movies/all',(req, res) => {
@@ -204,7 +211,29 @@ app.post('/user/registration', (req, res) => {
 });
 
 app.post('/users', (req, res) => {
-  res.send('You need to update your profile');
+  Users.findOne({ Username: req.body.Username })
+    .then((user) => {
+      if (user) {
+        return res.status(400).send(req.body.Username + 'already exists');
+      } else {
+        Users
+        .create({
+          Username: req.body.Username,
+          Password: req.body.Password,
+          Email: req.body.Email,
+          Birthday: req.body.Birthday
+        })
+        .then((user) =>{res.status(201).json(user) })
+        .catch((error) => {
+          console.error(error);
+          res.status(500).send('Error: ' + error);
+        })
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+      res.status(500).send('Error: ' + error);
+    });
 });
 
 app.put('/users/movies', (req, res) => {
