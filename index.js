@@ -17,7 +17,7 @@ let topMovies = [
   {
     title: 'Interstellar',
     director: 'Christopher Nolan',
-    genre: ['Sci-fi'],
+    genre: 'Sci-fi',
     description: `In Earth's future, a global crop blight and second Dust Bowl are slowly rendering the planet uninhabitable. Professor Brand (Michael Caine), a brilliant NASA physicist, is working on plans to save mankind by transporting Earth's population to a new home via a wormhole. But first, Brand must send former NASA pilot Cooper (Matthew McConaughey) and a team of researchers through the wormhole and across the galaxy to find out which of three planets could be mankind's new home.`,
     imageurl: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Ftwitter.com%2Finterstellar&psig=AOvVaw0df02skQTiLtaDdxAKCdCI&ust=1614214268148000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCIDWhomnge8CFQAAAAAdAAAAABAN'
   },
@@ -29,11 +29,15 @@ let topMovies = [
     imageurl: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Ftime.com%2F3505849%2Fpulp-fiction-20-years%2F&psig=AOvVaw3l1zZWX7QgtAvSo3cS_rMw&ust=1614214351843000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCPjA-bSnge8CFQAAAAAdAAAAABAD'
   },
   {
-    title: 'Once Upon a Time in Hollywood',
-    director: 'Quentin Tarantino',
-    genre: ['Comedy'],
-    description: `Actor Rick Dalton gained fame and fortune by starring in a 1950s television Western, but is now struggling to find meaningful work in a Hollywood that he doesn't recognize anymore. He spends most of his time drinking and palling around with Cliff Booth, his easygoing best friend and longtime stunt double. Rick also happens to live next door to Roman Polanski and Sharon Tate -- the filmmaker and budding actress whose futures will forever be altered by members of the Manson Family.`,
-    imageurl: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fvoicesfilm.com%2Fonce-upon-a-time-in-hollywood-review-tarantinos-best-film-since-pulp-fiction%2F&psig=AOvVaw2tiQVbGcS5D9hbsLNVDkyd&ust=1614214500706000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCKi5yPunge8CFQAAAAAdAAAAABAJ'
+    title: "Once Upon a Time in Hollywood",
+    description: "Actor Rick Dalton gained fame and fortune by starring in a 1950s television Western, but is now struggling to find meaningful work in a Hollywood that he doesn't recognize anymore. He spends most of his time drinking and palling around with Cliff Booth, his easygoing best friend and longtime stunt double. Rick also happens to live next door to Roman Polanski and Sharon Tate -- the filmmaker and budding actress whose futures will forever be altered by members of the Manson Family.",
+    director: {
+      name: "Quentin Tarantino",
+      Bio: `Christopher Edward Nolan CBE is a British-American film director, producer, and screenwriter. His directorial efforts have grossed more than US$5.1 billion worldwide, garnered 34 Oscar nominations and ten wins. Born and raised in London, Nolan developed an interest in filmmaking from a young age.`,
+    genre: {
+      Name: "Comedy",
+      description: "A comedy film is a category of film in which the main emphasis is on humor. These films are designed to make the audience laugh through amusement and most often work by exaggerating characteristics for humorous effect. Films in this style traditionally have a happy ending."
+    imageurl: 'picture.png'
   },
   {
     title: 'Inglorious Basterds',
