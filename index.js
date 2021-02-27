@@ -1,18 +1,21 @@
-const express = require("express");
-  morgan = require("morgan");
+const express = require("express"),
+      morgan = require("morgan"),
+      bodyParser = require("body-parser"),
+      mongoose = require('mongoose');
 
-const mongoose = require('mongoose');
 const Models = require('./modal.js');
 
-const Movies = Models.Movie;
-const Users = Models.User;
+const app = express();
+const moviedb = Models.moviedb;
+const User = Models.User;
 
 mongoose.connect('mongodb://localhost:27017/moviedb', {
 useNewUrlParser: true, useUnifiedTopology: true });
 
-const app = express();
 
+app.use(bodyParser.json());
 app.use(morgan('common'));
+app.use(express.static('public'));
 
 
 let topMovies = [
@@ -173,7 +176,7 @@ app.get('/documentation', (req, res) => {
 });
 
 app.get('/movies', (req, res) => {
-  Movies.find()
+  moviedb.find()
   .then((moviedb) => {
     res.status(201).json(moviedb);
   })
@@ -211,12 +214,12 @@ app.post('/user/registration', (req, res) => {
 });
 
 app.post('/users', (req, res) => {
-  Users.findOne({ Username: req.body.Username })
+  User.findOne({ Username: req.body.Username })
     .then((user) => {
       if (user) {
         return res.status(400).send(req.body.Username + 'already exists');
       } else {
-        Users
+        User
         .create({
           Username: req.body.Username,
           Password: req.body.Password,
@@ -236,7 +239,7 @@ app.post('/users', (req, res) => {
     });
 });
 
-app.put('/users/movies', (req, res) => {
+app.put('/users/:Username/Movies/:', (req, res) => {
   res.send('Whats your favorite movie?');
 });
 
@@ -244,8 +247,19 @@ app.delete('/users/title', (req, res) => {
   res.send('But it was rated 89 on Metacritic. Do not delete!');
 });
 
-app.delete('/users/email', (req, res) => {
-  res.send('Alright we shall see you later then');
+app.delete('/users/:Username', (req, res) => {
+  User.findOneAndDelete({ Username: req.params.Username })
+  .then((user) => {
+    if (!user) {
+      res.status(400).send(req.params.Username + ' was not found');
+    } else {
+      res.status(200).send(req.params.Username + ' was deleted.');
+    }
+  })
+  .catch((err) => {
+    console.error(err);
+    res.status(500).send('Error: ' + err);
+  });
 });
 
 
