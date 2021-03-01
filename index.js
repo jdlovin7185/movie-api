@@ -1,7 +1,9 @@
 const express = require("express"),
       bodyParser = require('body-parser'),
       morgan = require("morgan"),
-      mongoose = require('mongoose');
+      mongoose = require('mongoose'),
+      passport = require('passport');
+require('./passport');
 
 const Models = require('./model.js');
 
@@ -18,6 +20,7 @@ app.use(express.static('public'));
 mongoose.connect('mongodb://localhost:27017/myFlix', {
 useNewUrlParser: true, useUnifiedTopology: true });
 
+let auth = require('./auth')(app);
 
 app.get('/', (req, res) => {
   res.send('Welcome to my movie collection!');
