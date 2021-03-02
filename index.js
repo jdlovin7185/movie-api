@@ -17,6 +17,7 @@ const Users = Models.User;
 app.use(bodyParser.json());
 app.use(morgan('common'));
 app.use(express.static('public'));
+check('Username', 'Username contains non-alphanumeric characters - not allowed.').isAlphanumeric()
 
 mongoose.connect('mongodb://localhost:27017/myFlix', {
   useNewUrlParser: true, useUnifiedTopology: true });
@@ -119,7 +120,20 @@ app.put('/users/:Username', passport.authenticate('jwt', {session: false}), (req
 });
 
 // Get user info
-app.post('/users', (req, res) => {
+app.post('/users', 
+[
+  check('Username', 'Username is required').isLength({min: 5}),
+  check('Username', 'Username contians non alphanumeric characters - not allowed.').isAlphanumeric(),
+  check('Password', 'Password is required').not().isEmpty(),
+  check('Email', 'Email does not appear to be valid').isEmail()
+], (req, res) => {
+
+  // check the validation object for errors
+  let errors = validationResult(req);
+
+  if (!errors.isEmpty()) {
+    return res.status(422).json({errors: errors.array() });
+  }
   let hashedPassword = Users.hashPassword(req.body.Password);
   Users.findOne({ Username: req.body.Username })
     .then((user) => {
@@ -194,8 +208,9 @@ app.delete('/users/:Username', passport.authenticate('jwt', {session: false}), (
 
 
 
-app.listen(8080, () => {
-  console.log('Your app is listening on port 8080.');
+const port = process.env.PORT || 8080;
+app.listen(port, '0.0.0.0',() => {
+  console.log('Listening on Port ' + port);
 });
 
 app.use((err, req, res, next) => {
