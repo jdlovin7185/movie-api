@@ -5,7 +5,7 @@ const express = require("express"),
       passport = require('passport'),
       cors = require('cors');
 const { check } = require("express-validator");
-      {check, validationResult} = require('express-validator');
+const {check, validationResult} = require('express-validator');
 require('./passport');
 
 const app = express();
