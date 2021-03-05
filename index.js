@@ -7,13 +7,15 @@ const express = require("express"),
 const {check, validationResult} = require('express-validator');
 require('./passport');
 
+
+
 const app = express();
 const Models = require('./model.js');
 const Movie = Models.Movie;
 const Users = Models.User;
 
 
-app.use(bodyParser.json());
+app.use(express.json());
 app.use(morgan('common'));
 app.use(express.static('public'));
 check('Username', 'Username contains non-alphanumeric characters - not allowed.').isAlphanumeric()
