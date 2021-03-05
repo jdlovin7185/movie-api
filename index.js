@@ -20,8 +20,7 @@ app.use(morgan('common'));
 app.use(express.static('public'));
 check('Username', 'Username contains non-alphanumeric characters - not allowed.').isAlphanumeric()
 
-
-// mongoose.connect('mongodb://localhost:27017/myFlix', 
+// mongoose.connect('mongodb://localhost:27017/myFlixDB', 
 mongoose.connect( process.env.CONNECTION_URI,
 { useNewUrlParser: true, useUnifiedTopology: true });
   
