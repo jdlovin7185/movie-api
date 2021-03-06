@@ -26,7 +26,7 @@ mongoose.connect( process.env.CONNECTION_URI,
   
   let auth = require('./auth')(app);
   
-  let allowedOrigins = ['http://locaolhost:8080', 'http://testsite.com', 'http://localhost:1234'];
+  let allowedOrigins = ['http://localhost:8080', 'http://testsite.com', 'http://localhost:1234'];
   app.use(cors({
     origin: (origin, callback) => {
       if(!origin) return callback(null, true);
