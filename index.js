@@ -5,7 +5,6 @@ const express = require("express"),
       passport = require('passport'),
       cors = require('cors');
 const {check, validationResult} = require('express-validator');
-require('./passport');
 
 
 
@@ -22,9 +21,10 @@ check('Username', 'Username contains non-alphanumeric characters - not allowed.'
 
 // mongoose.connect('mongodb://localhost:27017/myFlixDB', 
 mongoose.connect( process.env.CONNECTION_URI,
-{ useNewUrlParser: true, useUnifiedTopology: true });
+  { useNewUrlParser: true, useUnifiedTopology: true });
   
   let auth = require('./auth')(app);
+  require('./passport');
   
   let allowedOrigins = ['http://localhost:8080', 'http://testsite.com', 'http://localhost:1234'];
   app.use(cors({
