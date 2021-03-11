@@ -26,7 +26,7 @@ mongoose.connect( process.env.CONNECTION_URI,
   let auth = require('./auth')(app);
   require('./passport');
   
-  let allowedOrigins = ['http://localhost:8080', 'http://localhost:1234'];
+  let allowedOrigins = ['http://localhost:8080', 'https://myflix1-0.herokuapp.com','http://localhost:1234'];
   app.use(cors({
     origin: (origin, callback) => {
       if(!origin) return callback(null, true);
