@@ -23,7 +23,7 @@ check('Username', 'Username contains non-alphanumeric characters - not allowed.'
 mongoose.connect( process.env.CONNECTION_URI,
   { useNewUrlParser: true, useUnifiedTopology: true });
   
-  let auth = require('./auth')(app);
+
   require('./passport');
   
   const allowedOrigins = ['http://localhost:8080', 'https://myflix1-0.herokuapp.com/', 'http://localhost:1234'];
@@ -44,6 +44,7 @@ app.use(function (req, res, next) {
   next();
 });
 
+let auth = require('./auth')(app);
 
 app.get('/', (req, res) => {
   res.send('Welcome to my movie collection!');
