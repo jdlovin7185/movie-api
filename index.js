@@ -136,6 +136,18 @@ app.put('/users/:Username',
     });
 });
 
+// Gets a list of users
+app.get('/users/:Username', (req, res) => {
+  Users.findOne({ Username: req.params.Username })
+  .then((user) => {
+    res.json(user);
+  })
+  .catch((err) => {
+    console.error(err);
+    res.status(500).send('Error: ' + err);
+  });
+});
+
 // Become a user
 app.post('/users', 
 // passport.authenticate('jwt', {session: false}),
