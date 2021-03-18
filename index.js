@@ -208,10 +208,10 @@ app.post('/users/:Username/Movies/:FavoriteMovies',
     });
 });
 
-app.get('/users/:Username/Movies/:FavoriteMovies', 
+app.get('/users/:Username/movies', 
 // passport.authenticate('jwt', {session: false}),
  (req, res) => {
-  Users.find({ Username: req.params.Username},
+  Users.findOne({ Username: req.params.Username},
     { $pull: { FavoriteMovies: req.params.FavoriteMovies}},
      {new: true },
      (err, updatedUser) => {
