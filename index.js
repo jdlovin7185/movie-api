@@ -210,18 +210,15 @@ app.post('/users/:Username/Movies/:FavoriteMovies',
 
 app.get('/users/movies/:Username', 
 // passport.authenticate('jwt', {session: false}),
- (req, res) => {
-  Users.findOne({ Username: req.params.Username},
-    { $pull: { FavoriteMovies: req.params.FavoriteMovies}},
-     {new: true },
-     (err, updatedUser) => {
-       if(err) {
-         console.error(err);
-         res.status(500).send('Error: ' + err);
-       } else {
-         res.json(updatedUser);
-       }
-     });
+(req, res) => {
+  Users.findOne({ 'FavoriteMovies': req.params.FavoriteMovies})
+  .then((favoritemovies) => {
+    res.status(201).json(favoritemovies.FavoriteMovies);
+  })
+  .catch((err) => {
+    console.error(err);
+    res.status(500).send('Error: ' + err);
+  });
 });
 
 // Delete a movie from the user list
