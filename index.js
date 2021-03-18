@@ -211,7 +211,7 @@ app.post('/users/:Username/Movies/:FavoriteMovies',
 app.get('/users/movies/:Username', 
 // passport.authenticate('jwt', {session: false}),
 (req, res) => {
-  Users.find({ 'FavoriteMovies': req.params.FavoriteMovies})
+  Users.findOne({ 'FavoriteMovies': req.params.FavoriteMovies})
   .then((favoritemovies) => {
     res.status(201).json(favoritemovies.FavoriteMovies);
   })
