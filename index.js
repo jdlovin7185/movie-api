@@ -208,6 +208,22 @@ app.post('/users/:Username/Movies/:FavoriteMovies',
     });
 });
 
+app.get('/users/:Username/Movies/:FavoriteMovies', 
+// passport.authenticate('jwt', {session: false}),
+ (req, res) => {
+  Users.find({ Username: req.params.Username},
+    { $pull: { FavoriteMovies: req.params.FavoriteMovies}},
+     {new: true },
+     (err, updatedUser) => {
+       if(err) {
+         console.error(err);
+         res.status(500).send('Error: ' + err);
+       } else {
+         res.json(updatedUser);
+       }
+     });
+});
+
 // Delete a movie from the user list
 app.delete('/users/:Username/Movies/:FavoriteMovies', 
 // passport.authenticate('jwt', {session: false}),
