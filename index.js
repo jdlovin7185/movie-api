@@ -209,7 +209,7 @@ app.post('/users/:Username/Movies/:FavoriteMovies',
 });
 
 // Delete a movie from the user list
-app.delete('/users/:Username/Movies/:FavoriteMovies', 
+app.delete('/users/:Username/movies/:FavoriteMovies', 
 // passport.authenticate('jwt', {session: false}),
  (req, res) => {
   Users.findOneAndUpdate({ Username: req.params.Username},
