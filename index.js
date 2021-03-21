@@ -138,7 +138,7 @@ app.put('/users/:Username',
 });
 
 // Gets a list of users
-app.get('/users/:Username', (req, res) => {
+app.get('/user/:Username', (req, res) => {
   Users.findOne({ Username: req.params.Username })
   .then((user) => {
     res.json(user);
