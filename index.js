@@ -55,6 +55,11 @@ app.get('/documentation', (req, res) => {
   res.sendFile('public/documentation.html',{root: __dirname});
 });
 
+/**
+ * @param movie
+ * @returns all movies
+ */
+
 // get all movies
 app.get('/movies', 
 // passport.authenticate('jwt', {session: false}),
@@ -68,6 +73,11 @@ app.get('/movies',
     res.status(500).send('Error: ' + err);
   });
 });
+
+/**
+ * @param title
+ * @@returns a movie by its title
+ */
 
 // get movie by title
 app.get('/movies/:Title', 
@@ -83,6 +93,12 @@ app.get('/movies/:Title',
     });
 });
 
+/**
+ * @param genre
+ * @param title 
+ * @@returns a genre of the movie its referring to
+ */
+
 // Get the genre of the movie
 app.get('/movies/genre/:Title', 
 // passport.authenticate('jwt', {session: false}), 
@@ -96,7 +112,11 @@ app.get('/movies/genre/:Title',
       res.status(500).send('Error: ' + err);
     });
 });
-
+/**
+ * @param director.name
+ * @param findOne
+ * @@returns a director
+ */
 
 // About a director
 app.get('/movies/director/:Name', 
@@ -111,6 +131,14 @@ app.get('/movies/director/:Name',
     res.status(500).send('Error: ' + err);
   });
 });
+
+/** 
+ * updates a users info
+ * @param user
+ * @param Password
+ * @param Email
+ * @param Birthday 
+ */
 
 //  Update user info
 app.put('/users/:Username', 
@@ -137,7 +165,11 @@ app.put('/users/:Username',
     });
 });
 
-// Gets a list of users
+/**
+ * @param user
+ * @returns a single users info
+ */
+
 app.get('/user/:Username', (req, res) => {
   Users.findOne({ Username: req.params.Username })
   .then((user) => {
@@ -148,6 +180,13 @@ app.get('/user/:Username', (req, res) => {
     res.status(500).send('Error: ' + err);
   });
 });
+
+/** 
+ * lets a user register
+ * @param Username
+ * @param Password
+ * @param Email
+ * */
 
 // Become a user
 app.post('/users', 
@@ -191,6 +230,12 @@ app.post('/users',
     });
 });
 
+/**
+ * Lets a user add a movie to their list of favorites
+ * @param movie._id
+ * @param user
+ */
+
 // Add a movie to the user
 app.post('/users/:Username/Movies/:FavoriteMovies', 
 // passport.authenticate('jwt', {session: false}),
@@ -208,6 +253,12 @@ app.post('/users/:Username/Movies/:FavoriteMovies',
     });
 });
 
+/**
+ * Lets a user remove a movie from their list of favorites
+ * @param movie._id
+ * @param user
+ */
+
 // Delete a movie from the user list
 app.delete('/users/:Username/movies/:FavoriteMovies', 
 // passport.authenticate('jwt', {session: false}),
@@ -224,6 +275,11 @@ app.delete('/users/:Username/movies/:FavoriteMovies',
        }
      });
 });
+
+/**
+ * Lets a user delete their account 
+ * @param user
+ */
 
 // Delete a user
 app.delete('/users/:Username', 
@@ -244,11 +300,16 @@ app.delete('/users/:Username',
 });
 
 
+// Defines the port the app will listen on when running locally
 
 const port = process.env.PORT || 8080;
 app.listen(port, '0.0.0.0',() => {
   console.log('Listening on Port ' + port);
 });
+
+/**
+ * Throws an error when the app won't run
+ */
 
 app.use((err, req, res, next) => {
   console.error(err.stack);

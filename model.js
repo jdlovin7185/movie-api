@@ -1,5 +1,11 @@
 const mongoose = require('mongoose');
 
+/**
+ * This is how the API is set-up in order to get data correctly
+ * Below, there is a separate database for movies
+ * and for the users. The model describes how each one is structured 
+ */
+
 let movieSchema = mongoose.Schema({
   Title: {type: String, required: true},
   Genre: {
