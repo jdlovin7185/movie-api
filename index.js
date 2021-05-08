@@ -40,7 +40,7 @@ mongoose.connect( process.env.CONNECTION_URI,
   }));
 
 app.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "http://localhost:1234");
+  res.header("Access-Control-Allow-Origin", "http://localhost:1234", "https://jdlovin7185.github.io");
   next();
 });
 
