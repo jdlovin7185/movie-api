@@ -56,11 +56,9 @@ app.get('/documentation', (req, res) => {
 });
 
 /**
- * @param movie
- * @returns all movies
+ * Gets all the movies 
  */
 
-// get all movies
 app.get('/movies', 
 // passport.authenticate('jwt', {session: false}),
  (req, res) => {
@@ -75,11 +73,10 @@ app.get('/movies',
 });
 
 /**
- * @param title
- * @@returns a movie by its title
+ * gets movie by its title
+ * @param {string} title - Title of the movie
  */
 
-// get movie by title
 app.get('/movies/:Title', 
 // passport.authenticate('jwt', {session: false}),
  (req, res) => {
@@ -94,12 +91,11 @@ app.get('/movies/:Title',
 });
 
 /**
- * @param genre
- * @param title 
- * @@returns a genre of the movie its referring to
+ * Gets a genre of the movie its referring to
+ * @param {string} genre - genre of the movie
+ * @param {string} title - title of the movie
  */
 
-// Get the genre of the movie
 app.get('/movies/genre/:Title', 
 // passport.authenticate('jwt', {session: false}), 
 (req, res) => {
@@ -113,9 +109,8 @@ app.get('/movies/genre/:Title',
     });
 });
 /**
- * @param director.name
- * @param findOne
- * @@returns a director
+ *  Gets a directors info
+ * @param {string} director.name - name of the director
  */
 
 // About a director
@@ -134,13 +129,12 @@ app.get('/movies/director/:Name',
 
 /** 
  * updates a users info
- * @param user
- * @param Password
- * @param Email
- * @param Birthday 
+ * @param {string} user - username being updated
+ * @param {string} Password - password of the user
+ * @param {string} Email - email of the user
+ * @param {string} Birthday - birthday of the user(inactive)
  */
 
-//  Update user info
 app.put('/users/:Username', 
 // passport.authenticate('jwt', {session: false}),
  (req, res) => {
@@ -166,8 +160,8 @@ app.put('/users/:Username',
 });
 
 /**
- * @param user
- * @returns a single users info
+ * gets a single users info
+ * @param {string} user - the current user logged in
  */
 
 app.get('/user/:Username', (req, res) => {
@@ -183,9 +177,9 @@ app.get('/user/:Username', (req, res) => {
 
 /** 
  * lets a user register
- * @param Username
- * @param Password
- * @param Email
+ * @param {string} Username - what the person wants their username to be
+ * @param {string} Password - what the person wants their password to be
+ * @param {string} Email - wha the person wants the email to be
  * */
 
 // Become a user
@@ -232,8 +226,8 @@ app.post('/users',
 
 /**
  * Lets a user add a movie to their list of favorites
- * @param movie._id
- * @param user
+ * @param {string} movie._id - the id of the movie
+ * @param {string} user - the current user logged in
  */
 
 // Add a movie to the user
@@ -255,8 +249,8 @@ app.post('/users/:Username/Movies/:FavoriteMovies',
 
 /**
  * Lets a user remove a movie from their list of favorites
- * @param movie._id
- * @param user
+ * @param {string} movie._id - the id of the movie in the database
+ * @param {string} user - the current user logged in
  */
 
 // Delete a movie from the user list
@@ -278,7 +272,7 @@ app.delete('/users/:Username/movies/:FavoriteMovies',
 
 /**
  * Lets a user delete their account 
- * @param user
+ * @param {string} user - current user thats logged in
  */
 
 // Delete a user
