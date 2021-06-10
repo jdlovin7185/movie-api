@@ -19,8 +19,8 @@ app.use(morgan('common'));
 app.use(express.static('public'));
 check('Username', 'Username contains non-alphanumeric characters - not allowed.').isAlphanumeric()
 
-// mongoose.connect('mongodb://localhost:27017/myFlixDB', 
-mongoose.connect( process.env.CONNECTION_URI,
+mongoose.connect('mongodb://localhost:27017/myFlixDB', 
+// mongoose.connect( process.env.CONNECTION_URI,
   { useNewUrlParser: true, useUnifiedTopology: true });
   
 
@@ -78,7 +78,7 @@ app.get('/movies',
  */
 
 app.get('/movies/:Title', 
-// passport.authenticate('jwt', {session: false}),
+passport.authenticate('jwt', {session: false}),
  (req, res) => {
   Movie.findOne({ Title: req.params.Title})
     .then((movie) => {
@@ -97,7 +97,7 @@ app.get('/movies/:Title',
  */
 
 app.get('/movies/genre/:Title', 
-// passport.authenticate('jwt', {session: false}), 
+passport.authenticate('jwt', {session: false}), 
 (req, res) => {
   Movie.findOne({ Title: req.params.Title})
     .then((movie) => {
@@ -115,7 +115,7 @@ app.get('/movies/genre/:Title',
 
 // About a director
 app.get('/movies/director/:Name', 
-// passport.authenticate('jwt', {session: false}), 
+passport.authenticate('jwt', {session: false}), 
 (req, res) => {
   Movie.findOne({ 'Director.Name': req.params.Name})
   .then((director) => {
@@ -136,7 +136,7 @@ app.get('/movies/director/:Name',
  */
 
 app.put('/users/:Username', 
-// passport.authenticate('jwt', {session: false}),
+passport.authenticate('jwt', {session: false}),
  (req, res) => {
   let hashedPassword = Users.hashPassword(req.body.Password);
   Users.findOneAndUpdate({ Username: req.params.Username}, 
@@ -184,7 +184,7 @@ app.get('/user/:Username', (req, res) => {
 
 // Become a user
 app.post('/users', 
-// passport.authenticate('jwt', {session: false}),
+passport.authenticate('jwt', {session: false}),
 [
   check('Username', 'Username is has to be at least 5 characters').isLength({min: 5}).withMessage('Username is has to be at least 5 characters'),
   check('Username', 'Username contains non alphanumeric characters - not allowed.').isAlphanumeric(),
@@ -232,7 +232,7 @@ app.post('/users',
 
 // Add a movie to the user
 app.post('/users/:Username/Movies/:FavoriteMovies', 
-// passport.authenticate('jwt', {session: false}),
+passport.authenticate('jwt', {session: false}),
  (req, res) => {
   Users.findOneAndUpdate({ Username: req.params.Username},
     { $push: {FavoriteMovies: req.params.FavoriteMovies}},
@@ -255,7 +255,7 @@ app.post('/users/:Username/Movies/:FavoriteMovies',
 
 // Delete a movie from the user list
 app.delete('/users/:Username/movies/:FavoriteMovies', 
-// passport.authenticate('jwt', {session: false}),
+passport.authenticate('jwt', {session: false}),
  (req, res) => {
   Users.findOneAndUpdate({ Username: req.params.Username},
     { $pull: { FavoriteMovies: req.params.FavoriteMovies}},
@@ -277,7 +277,7 @@ app.delete('/users/:Username/movies/:FavoriteMovies',
 
 // Delete a user
 app.delete('/users/:Username', 
-// passport.authenticate('jwt', {session: false}),
+passport.authenticate('jwt', {session: false}),
  (req, res) => {
   Users.findOneAndRemove({ Username: req.params.Username })
   .then((user) => {
